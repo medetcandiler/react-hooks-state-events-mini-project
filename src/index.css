@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .left-full {
+    left: 100%;
+  }
+}
+
 .img {
   background-image: url('https://s3-alpha-sig.figma.com/img/cc1e/1afc/fad6c16a7c493086bb877d313b105ba4?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mTLhNAVAyNU7XUFltYBmZqjNWK0CGts96SeJ-tG3DKFhKMx2JMj5txuwx3WqVs5zTxxkjIL9olNtv0nPLibgYWKvBKhtjA29LHSw6HaedLGKrsmMnKzBK0k6HpUAEUOql1eNJajFkl-Yt-opADYjn9AubewEa~AaHQdDTonyBhTgNoG3xx8G6Qp0zqbSqFOCSujnuo40dywp0AdShHpIqIqy9iN0WR37oJpV6fA1pFKYEI8DKfjwst9govNeFiiQGNjK3GX666DabZzVJRqtwm2cdSaVuKkXBnQZJHSedSvAMgsk7OV5qTE~FQAxjxAGX0eHqVDSbZd8voiYrt8Acw__');
 }

@@ -10,10 +10,8 @@ function App() {
 
   return (
     <main>
-      <section className="header-bg bg-cover header-bg h-screen ">
-        <Navbar />
-        <HeroSection />
-      </section>
+      <Navbar />
+      <HeroSection />
       <Benefits />
       <InsuranceBenefitsSection />
       <TestimonialsSection />

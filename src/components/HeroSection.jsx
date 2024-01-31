@@ -1,21 +1,93 @@
+import { useState, useEffect } from "react";
+import HeroSectionSlider from "./HeroSlider";
+import { data } from "autoprefixer";
+
+const dataSlice = [
+  {
+    id: 1,
+    title: "Araç Sigortası",
+    description:
+      "Araç sigortası ile aracınızın güvence altında olduğundan emin olun. Trafik kazaları, hırsızlık ve diğer risklere karşı koruma sağlıyoruz.",
+    bg: "car.jpeg",
+  },
+  {
+    id: 2,
+    title: "Konut Sigortası",
+    description:
+      "Ev sigortası ile evinizi ve eşyalarınızı güvence altına alın. Doğal afetler, hırsızlık ve diğer risklere karşı kapsamlı bir koruma sunuyoruz.",
+    bg: "konut.jpeg",
+  },
+  {
+    id: 3,
+    title: "Sağlık Sigortası",
+    description:
+      "Sağlık sigortası ile sağlığınızı ön planda tutun. İleri tedaviler, acil durumlar ve diğer sağlık hizmetlerine geniş kapsamlı bir erişim sağlıyoruz.",
+    bg: "logistic.jpeg",
+  },
+];
+
 const HeroSection = () => {
+  const [currentSlice, setCurrentSlice] = useState(0);
+
+  useEffect(() => {
+    const intervalNext = setInterval(() => {
+      handleNextSlice();
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalNext);
+    };
+  }, [currentSlice]);
+
+  const handleNextSlice = () => {
+    setCurrentSlice((prev) => (prev + 1) % dataSlice.length);
+  };
+
+  const handlePrevSlice = () => {
+    setCurrentSlice((prev) => (prev - 1 + dataSlice.length) % dataSlice.length);
+  };
+
+  const backgroundImageStyle = {
+    backgroundImage: `url('${dataSlice[currentSlice].bg}')`,
+  };
+
   return (
-    <section className="flex flex-col justify-center items-center self-stretch max-md:px-5">
-      <div className="flex flex-col items-center pb-12 w-full max-w-[1048px] max-md:max-w-full">
-        <div className="mt-40 text-6xl font-extrabold tracking-wide text-center text-white leading-[80px] w-[695px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[62px]">
-          Güvenceli Geleceğin Anahtarı
+    <section
+      style={backgroundImageStyle}
+      className={`bg-cover h-screen-80 relative overflow-hidden`}
+    >
+      <div className="absolute bottom-12 flex w-full justify-between px-12">
+        <div
+          onClick={handlePrevSlice}
+          className="flex gap-4 justify-between items-stretch px-6 py-4 bg-sky-500 rounded-md max-md:px-5"
+        >
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d8af384f430da15aad208f6c66ca71156587c774e276d981f7866b09d5892d52?"
+            className="object-center my-auto w-3 aspect-[1.2] -scale-100"
+          />
         </div>
-        <div className="mt-10 text-xl font-medium tracking-wide leading-8 text-center text-white max-md:max-w-full">
-          Sigorta hizmetlerimizle hayatınızı güvence altına alın. Küçük
-          ölçekteki riskleri büyük bir özenle yönetiyoruz.
+        <div
+          onClick={handleNextSlice}
+          className="flex gap-4 justify-between items-stretch px-6 py-4 bg-sky-500 rounded-md max-md:px-5"
+        >
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d8af384f430da15aad208f6c66ca71156587c774e276d981f7866b09d5892d52?"
+            className="object-center my-auto w-3 aspect-[1.2]"
+          />
         </div>
-        <div className="flex gap-2.5 items-stretch mt-10 text-sm font-bold tracking-wide leading-5 text-center text-white whitespace-nowrap">
-          <div className="grow justify-center items-stretch px-9 py-4 bg-sky-500 rounded-[37px] max-md:px-5">
-            Teklif Alın
-          </div>
-          <div className="grow justify-center items-stretch px-9 py-4 border border-solid border-[color:var(--light-text-color,#FFF)] rounded-[37px] max-md:px-5">
-            Daha Fazla Bilgi
-          </div>
+      </div>
+
+      <div className="max-md:px-5">
+        <div className="flex justify-center">
+          {dataSlice.map((data, index) => (
+            <HeroSectionSlider
+              key={index}
+              content={data}
+              isVisible={index === currentSlice}
+            />
+          ))}
         </div>
       </div>
     </section>
