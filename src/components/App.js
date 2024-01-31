@@ -9,7 +9,7 @@ import FooterSection from "./Footer";
 function App() {
 
   return (
-    <main>
+    <main className="relative"> 
       <Navbar />
       <HeroSection />
       <Benefits />

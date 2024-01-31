@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import HeroSectionSlider from "./HeroSlider";
-import { data } from "autoprefixer";
 
 const dataSlice = [
   {
@@ -8,7 +7,7 @@ const dataSlice = [
     title: "Araç Sigortası",
     description:
       "Araç sigortası ile aracınızın güvence altında olduğundan emin olun. Trafik kazaları, hırsızlık ve diğer risklere karşı koruma sağlıyoruz.",
-    bg: "car.jpeg",
+    bg: "bg.jpeg",
   },
   {
     id: 2,
@@ -32,7 +31,7 @@ const HeroSection = () => {
   useEffect(() => {
     const intervalNext = setInterval(() => {
       handleNextSlice();
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearInterval(intervalNext);
@@ -48,13 +47,13 @@ const HeroSection = () => {
   };
 
   const backgroundImageStyle = {
-    backgroundImage: `url('${dataSlice[currentSlice].bg}')`,
+    backgroundImage: `radial-gradient(rgba(0, 128, 128, 0.7), rgba(0, 123, 255, 0.1)), url('${dataSlice[currentSlice].bg}')`,
   };
 
   return (
     <section
       style={backgroundImageStyle}
-      className={`bg-cover h-screen-80 relative overflow-hidden`}
+      className={`bg-cover h-screen-80 mt-[80px] relative overflow-hidden`}
     >
       <div className="absolute bottom-12 flex w-full justify-between px-12">
         <div
